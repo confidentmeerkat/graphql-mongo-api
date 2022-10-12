@@ -7,7 +7,10 @@ const parser = new XMLParser();
 
 let idsForType = {};
 
-async function fetch() {
+async function seed() {
+  await Vehicle.collection.drop();
+  await VehicleType.collection.drop();
+
   const { data } = await axios.get(
     "https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=XML"
   );
@@ -64,4 +67,4 @@ async function fetch() {
   }
 }
 
-fetch();
+seed();
