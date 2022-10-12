@@ -1,5 +1,5 @@
 type Query {
-  vehicles: [Vehicle]
+  vehicles(dateAfter: String, dateBefore: String): [Vehicle]
   vehicle(makeId: Int!): Vehicle
 }
 

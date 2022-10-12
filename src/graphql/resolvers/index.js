@@ -1,8 +1,15 @@
 const Vehicle = require("../../models/Vehicle");
 
 const Query = {
-  vehicles: () => {
-    return Vehicle.find().populate("vehicleTypes").exec();
+  vehicles: (_, args) => {
+    const { dateAfter, dateBefore } = args;
+    let condition = { createdAt: {} };
+    if (dateAfter) condition.createdAt.$gte = new Date(dateAfter);
+    if (dateBefore) condition.createdAt.$lte = new Date(dateBefore);
+
+    console.log(condition);
+
+    return Vehicle.find(condition).populate("vehicleTypes").exec();
   },
   vehicle: (_, args) => {
     return Vehicle.findOne({ makeId: args.makeId })

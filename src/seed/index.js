@@ -3,9 +3,9 @@ const { XMLParser } = require("fast-xml-parser");
 const Vehicle = require("../models/Vehicle");
 const VehicleType = require("../models/VehicleType");
 
-const parser = new XMLParser();
 
 async function seed() {
+  const parser = new XMLParser();
   const vehicles = await Vehicle.find({}).select("makeId");
   let isVehicleExist = {};
   let idsForType = {};
