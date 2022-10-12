@@ -1,7 +1,13 @@
 
 
 ## How to run
+```sh
+yarn install
+yarn start:seed
 ```
+
+If you already seeded database
+```sh
 yarn install
 yarn start
 ```
