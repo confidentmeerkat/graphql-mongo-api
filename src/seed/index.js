@@ -20,11 +20,9 @@ async function seed() {
       Results: { AllVehicleMakes },
     },
   } = parser.parse(data);
-  // console.log('AllVehicleMakes :', AllVehicleMakes);
 
   for (let i of AllVehicleMakes) {
     const { Make_ID, Make_Name } = i;
-    console.log("Make_ID :", Make_ID);
 
     const { data: typeData } = await axios.get(
       `https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMakeId/${Make_ID}?format=%20x%20ml`
@@ -34,7 +32,6 @@ async function seed() {
         Results: { VehicleTypesForMakeIds },
       },
     } = parser.parse(typeData);
-    // console.log("VehicleTypesForMakeIds :", VehicleTypesForMakeIds);
 
     let vehicleTypes = [];
 
