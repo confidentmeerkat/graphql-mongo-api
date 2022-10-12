@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "start": "yarn seed && node src/app.js",
+    "dev": "nodemon src/app.js",
+    "seed": "node src/seed"
   },
   "keywords": [],
   "author": "",
