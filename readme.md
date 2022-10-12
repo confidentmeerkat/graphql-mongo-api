@@ -46,3 +46,23 @@ query ExampleQuery($makeId: Int!) {
     "makeId": 4877
 }
 ```
+
+To retrieve a vehicle by date.
+```
+//query
+query ExampleQuery($dateBefore: String, $dateAfter: String) {
+  vehicles(dateBefore: $dateBefore, dateAfter: $dateAfter) {
+    makeName
+    vehicleTypes {
+      typeId
+      typeName
+    }
+  }
+}
+
+// variable
+{
+  "dateBefore": "2022-10-11",
+  "dateAfter": "2022-10-09"
+}
+```
