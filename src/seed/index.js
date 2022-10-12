@@ -5,11 +5,18 @@ const VehicleType = require("../models/VehicleType");
 
 const parser = new XMLParser();
 
-let idsForType = {};
-
 async function seed() {
-  await Vehicle.collection.drop();
-  await VehicleType.collection.drop();
+  const vehicles = await Vehicle.find({}).select("makeId");
+  let isVehicleExist = {};
+  let idsForType = {};
+  for (let i of vehicles) {
+    isVehicleExist[i.makeId] = true;
+  }
+
+  const vehicleTypes = await VehicleType.find({}).select("typeId");
+  for (let i of vehicleTypes) {
+    idsForType[i.typeId] = i._id;
+  }
 
   const { data } = await axios.get(
     "https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=XML"
@@ -22,6 +29,8 @@ async function seed() {
   } = parser.parse(data);
 
   for (let i of AllVehicleMakes) {
+    if (isVehicleExist[i.Make_ID]) continue;
+
     const { Make_ID, Make_Name } = i;
 
     const { data: typeData } = await axios.get(
@@ -54,14 +63,12 @@ async function seed() {
       }
     }
 
-    const vehicle = await Vehicle.create({
+    Vehicle.create({
       makeId: Make_ID,
       makeName: Make_Name,
       vehicleTypes,
-    });
-
-    console.log(vehicle);
+    }).then((v) => console.log(v));
   }
 }
 
-seed();
+module.exports = seed;
