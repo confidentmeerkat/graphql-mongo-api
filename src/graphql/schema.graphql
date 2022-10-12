@@ -1,5 +1,6 @@
 type Query {
   vehicles: [Vehicle]
+  vehicle(makeId: Int!): Vehicle
 }
 
 type Vehicle {

@@ -27,3 +27,22 @@ query ExampleQuery {
   }
 }
 ```
+
+To retrieve a vehicle by makeid
+```
+//query
+query ExampleQuery($makeId: Int!) {
+  vehicle(makeId: $makeId) {
+    makeName
+    vehicleTypes {
+      typeId
+      typeName
+    }
+  }
+}
+
+// variable
+{
+    "makeId": 4877
+}
+```
