@@ -10,7 +10,7 @@ const vehicleSchema = new Schema({
     type: String,
     required: true,
   },
-  vehicleTypes: [{ type: Types.ObjectId, ref: "VehicleType" }],
+  vehicleTypes: [{ type: Schema.Types.ObjectId, ref: "VehicleType" }],
 });
 
 const Vehicle = model("Vehicle", vehicleSchema);
