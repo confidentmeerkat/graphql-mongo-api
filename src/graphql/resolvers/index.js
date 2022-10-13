@@ -4,11 +4,9 @@ const Query = {
   vehicles: (_, args) => {
     const { dateAfter, dateBefore } = args;
     let condition = {};
-    if(dateAfter && dateBefore) condition.createdAt = {}
+    if(dateAfter || dateBefore) condition.createdAt = {}
     if (dateAfter) {condition.createdAt.$gte = new Date(dateAfter)};
     if (dateBefore) condition.createdAt.$lte = new Date(dateBefore);
-
-    console.log(condition);
 
     return Vehicle.find(condition).populate("vehicleTypes").exec();
   },

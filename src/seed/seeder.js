@@ -3,7 +3,6 @@ const { XMLParser } = require("fast-xml-parser");
 const Vehicle = require("../models/Vehicle");
 const VehicleType = require("../models/VehicleType");
 
-
 async function seed() {
   const parser = new XMLParser();
   const vehicles = await Vehicle.find({}).select("makeId");
@@ -67,7 +66,10 @@ async function seed() {
       makeId: Make_ID,
       makeName: Make_Name,
       vehicleTypes,
-    }).then((v) => console.log(v));
+    }).then((v) => {
+      isVehicleExist[v.makeId] = true;
+      console.log(v);
+    });
   }
 }
 

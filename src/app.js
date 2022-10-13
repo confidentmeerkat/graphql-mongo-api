@@ -6,7 +6,8 @@ const resolvers = require("./graphql/resolvers");
 require("./models/Vehicle");
 require("./models/VehicleType");
 const cron = require("node-cron");
-const seed = require("./seed");
+const seed = require("./seed/seeder");
+
 
 const task = cron.schedule("*/50 * * * *", () => {
   console.log("seeding");
