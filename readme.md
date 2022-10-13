@@ -66,3 +66,6 @@ query ExampleQuery($dateBefore: String, $dateAfter: String) {
   "dateAfter": "2022-10-09"
 }
 ```
+
+### To seed
+http://localhost:4000/start-seed
