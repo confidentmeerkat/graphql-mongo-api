@@ -36,6 +36,11 @@ async function startApolloServer(typeDefs, resolvers) {
     task.stop();
   });
 
+  app.get("/start-seed", () => {
+    seed();
+    res.json("seeding")
+  })
+
   app.listen(4000, () => {
     console.log("Server is listening to port 4000");
   });
